@@ -1,3 +1,5 @@
+#let title-owns-city-year = state("modern-g7-32-title-owns-city-year", false)
+
 #let small-text = body => context {
   let target-size = query(<modern-g7-32-parameters>)
     .first()

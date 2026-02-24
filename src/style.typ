@@ -1,5 +1,6 @@
 #import "component/headings.typ": headings, structural-heading-titles
 #import "component/appendixes.typ": is-heading-in-appendix
+#import "utils.typ": title-owns-city-year
 
 #import "constants.typ": *
 
@@ -87,7 +88,9 @@
 
   set page(footer: context {
     if counter(page).get() == (1,) and not hide-title {
-      align(title-footer-align)[#city #year]
+      if not title-owns-city-year.get() {
+        align(title-footer-align)[#city #year]
+      }
     } else {
       align(pagination-align)[#counter(page).display()]
     }
