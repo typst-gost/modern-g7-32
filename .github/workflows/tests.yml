@@ -32,6 +32,9 @@ jobs:
       - name: Install tytanic
         run: cargo binstall tytanic --version 0.3.3 --no-confirm
 
+      - name: Install typst CLI (font list check)
+        run: cargo binstall typst-cli --no-confirm
+
       - name: Install Times New Roman
         run: |
           sudo apt-get update
