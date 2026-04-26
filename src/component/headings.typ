@@ -19,7 +19,12 @@
   structure-heading-style(heading(numbering: none)[#body])
 }
 
-#let headings(text-size, indent, add-pagebreaks) = body => {
+#let headings(
+  text-size,
+  indent,
+  add-pagebreaks,
+  heading-margin: default-heading-margin,
+) = body => {
   show heading: set text(size: text-size)
   set heading(numbering: "1.1")
 
@@ -50,7 +55,7 @@
     structure-heading-style(it)
   }
 
-  show heading: set block(..default-heading-margin)
+  show heading: set block(..heading-margin)
 
   body
 }

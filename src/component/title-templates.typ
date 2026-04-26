@@ -1,4 +1,8 @@
-#let template-names = ("default", "mai-university-lab")
+#let template-names = (
+  "default", 
+  "mai-university-lab", 
+  "mirea-university-report"
+)
 
 #let title-template-factory(template, arguments-function) = {
   return (..arguments) => template(..arguments-function(..arguments))

@@ -4,6 +4,7 @@
 #import "constants.typ": *
 
 #let gost-style(
+  university,
   year,
   city,
   hide-title,
@@ -16,6 +17,7 @@
   add-pagebreaks,
   body,
 ) = {
+  let university-style = resolve-university-style(university)
   let small-text-difference = (
     default-text-size.default - default-text-size.small
   )
@@ -29,6 +31,9 @@
 
   set page(margin: margin)
 
+  if university-style.font != none {
+    set text(font: university-style.font)
+  }
   set text(size: text-size, lang: "ru", hyphenate: false)
 
   set par(
@@ -98,6 +103,11 @@
     title: structural-heading-titles.references,
   )
 
-  show: headings(text-size, indent, add-pagebreaks)
+  show: headings(
+    text-size,
+    indent,
+    add-pagebreaks,
+    heading-margin: university-style.heading-margin,
+  )
   body
 }
