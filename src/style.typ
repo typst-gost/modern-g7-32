@@ -31,9 +31,7 @@
 
   set page(margin: margin)
 
-  if university-style.font != none {
-    set text(font: university-style.font)
-  }
+  set text(font: university-style.font) if university-style.font != none
   set text(size: text-size, lang: "ru", hyphenate: false)
 
   set par(
