@@ -32,20 +32,8 @@ jobs:
       - name: Install tytanic
         run: cargo binstall tytanic --version 0.3.3 --no-confirm
 
-      - name: Install typst CLI (font list check)
-        run: cargo binstall typst-cli --no-confirm
-
-      - name: Install Times New Roman
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y cabextract fontconfig
-          echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections
-          sudo apt-get install -y ttf-mscorefonts-installer
-          fc-cache -f
-          typst fonts | grep -i "Times New Roman"
-
       - name: Run test suite
-        run: tt --use-system-fonts run --no-fail-fast --max-delta 5
+        run: tt run --no-fail-fast --max-delta 5
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
