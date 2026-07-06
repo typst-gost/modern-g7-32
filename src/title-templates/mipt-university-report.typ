@@ -43,7 +43,7 @@
   }
 }
 
-#let students-block(student-name, group) = {
+#let student-lines(student-name, group) = {
   let students = if type(student-name) == array {
     student-name
   } else {
@@ -51,7 +51,7 @@
   }
   let plural = students.len() > 1
 
-  present-lines(
+  (
     if plural [Работу выполнили:] else [Работу выполнил:],
     if group != none {
       if plural [Студенты группы #group] else [Студент группы #group]
@@ -93,7 +93,7 @@
     ]
   ]
 
-  #v(2fr)
+  #v(1fr)
 
   #align(center)[
     #set text(size: 16pt, weight: "bold")
@@ -103,19 +103,17 @@
     )
   ]
 
-  #v(2fr)
+  #v(1.5fr)
 
   #align(right)[
-    #if student-name != none [
-      #students-block(student-name, group)
-    ]
-    #if instructor-name != none [
-      #v(10pt)
-      #present-lines(
-        [#instructor-label:],
-        [#instructor-name],
-      )
-    ]
+    #present-lines(
+      ..if student-name != none {
+        student-lines(student-name, group)
+      } else { () },
+      ..if instructor-name != none {
+        ([#instructor-label:], [#instructor-name])
+      } else { () },
+    )
   ]
 
   #v(1fr)

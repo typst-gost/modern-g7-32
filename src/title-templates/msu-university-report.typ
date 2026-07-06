@@ -67,17 +67,17 @@
     )
   ]
 
-  #v(2fr)
+  #v(2.6fr)
 
   #align(center)[
     #text(size: 16pt)[#report-type]
     #if subject != none [
-      #v(8pt)
-      #text(size: 18pt, weight: "bold")[«#subject»]
+      #v(24pt)
+      #text(size: 20pt, weight: "bold")[«#subject»]
     ]
   ]
 
-  #v(2fr)
+  #v(0.6fr)
 
   #align(right)[
     #if student-name != none [
@@ -97,5 +97,5 @@
     ]
   ]
 
-  #v(1.5fr)
+  #v(2fr)
 ]
