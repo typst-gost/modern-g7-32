@@ -90,7 +90,10 @@
 
   set page(footer: context {
     if counter(page).get() == (1,) and not hide-title {
-      align(title-footer-align)[#city #year]
+      let title-footer = university-style.at("title-footer", default: none)
+      align(title-footer-align)[
+        #if title-footer == none [#city #year] else { title-footer(city, year) }
+      ]
     } else {
       align(pagination-align)[#counter(page).display()]
     }

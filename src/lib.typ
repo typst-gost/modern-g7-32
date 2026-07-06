@@ -58,6 +58,9 @@
   if title-template == auto {
     title-template = templates.at(university-style.title-template)
   }
+  if city == none {
+    city = university-style.at("default-city", default: none)
+  }
 
   let table-counter = counter("table")
   let image-counter = counter("image")

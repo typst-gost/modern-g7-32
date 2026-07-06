@@ -10,6 +10,11 @@
 #let default-outline-depth = 3
 #let default-heading-margin = (below: 2em, above: 2em)
 
+// Титульный футер вида «Город, Год» (у МГУ и МФТИ год отделяется запятой)
+#let comma-city-footer(city, year) = {
+  if city == none [#year] else [#city, #year]
+}
+
 #let university-styles = (
   default: (
     font: none,
@@ -23,6 +28,21 @@
       below: default-leading,
     ),
     title-template: "mirea-university-report",
+    default-city: "Москва",
+  ),
+  msu: (
+    font: "Times New Roman",
+    heading-margin: default-heading-margin,
+    title-template: "msu-university-report",
+    default-city: "Москва",
+    title-footer: comma-city-footer,
+  ),
+  mipt: (
+    font: "Times New Roman",
+    heading-margin: default-heading-margin,
+    title-template: "mipt-university-report",
+    default-city: "Долгопрудный",
+    title-footer: comma-city-footer,
   ),
 )
 

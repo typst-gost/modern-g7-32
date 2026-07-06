@@ -1,7 +1,9 @@
 #let template-names = (
-  "default", 
-  "mai-university-lab", 
-  "mirea-university-report"
+  "default",
+  "mai-university-lab",
+  "mirea-university-report",
+  "msu-university-report",
+  "mipt-university-report",
 )
 
 #let title-template-factory(template, arguments-function) = {
