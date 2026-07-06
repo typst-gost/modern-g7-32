@@ -4,6 +4,7 @@
 #import "constants.typ": *
 
 #let gost-style(
+  university,
   year,
   city,
   hide-title,
@@ -16,6 +17,7 @@
   add-pagebreaks,
   body,
 ) = {
+  let university-style = resolve-university-style(university)
   let small-text-difference = (
     default-text-size.default - default-text-size.small
   )
@@ -29,6 +31,7 @@
 
   set page(margin: margin)
 
+  set text(font: university-style.font) if university-style.font != none
   set text(size: text-size, lang: "ru", hyphenate: false)
 
   set par(
@@ -87,7 +90,10 @@
 
   set page(footer: context {
     if counter(page).get() == (1,) and not hide-title {
-      align(title-footer-align)[#city #year]
+      let title-footer = university-style.at("title-footer", default: none)
+      align(title-footer-align)[
+        #if title-footer == none [#city #year] else { title-footer(city, year) }
+      ]
     } else {
       align(pagination-align)[#counter(page).display()]
     }
@@ -98,6 +104,11 @@
     title: structural-heading-titles.references,
   )
 
-  show: headings(text-size, indent, add-pagebreaks)
+  show: headings(
+    text-size,
+    indent,
+    add-pagebreaks,
+    heading-margin: university-style.heading-margin,
+  )
   body
 }

@@ -38,7 +38,8 @@
 }
 
 #let gost(
-  title-template: templates.default,
+  university: none,
+  title-template: auto,
   text-size: default-text-size,
   indent: default-indent,
   margin: default-margin,
@@ -53,6 +54,14 @@
   ..title-arguments,
   body,
 ) = {
+  let university-style = resolve-university-style(university)
+  if title-template == auto {
+    title-template = templates.at(university-style.title-template)
+  }
+  if city == none {
+    city = university-style.at("default-city", default: none)
+  }
+
   let table-counter = counter("table")
   let image-counter = counter("image")
   let citation-counter = counter("citation")
@@ -74,6 +83,7 @@
   text-size = fetch-field(text-size, ("default*", "small"))
 
   show: gost-style.with(
+    university,
     year,
     city,
     hide-title,
