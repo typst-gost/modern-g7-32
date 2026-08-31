@@ -2,6 +2,7 @@
 #import "utils.typ": fetch-field
 #import "component/title-templates.typ": templates
 #import "component/performers.typ": fetch-performers, performers-page
+#import "gost-frame/export.typ": gost-frame
 
 #import "constants.typ": *
 
@@ -50,6 +51,7 @@
   hide-title: false,
   performers: none,
   force-performers: false,
+  frame: none,
   ..title-arguments,
   body,
 ) = {
@@ -96,5 +98,16 @@
     force-performers,
   )
 
-  body
+  if frame == none {
+    body
+  } else {
+    assert(
+      type(frame) == dictionary,
+      message: "Параметр frame должен быть словарём настроек gost-frame",
+    )
+
+    // Завершаем созданные шаблоном титульные страницы до смены геометрии листа.
+    pagebreak(weak: true)
+    gost-frame.with(..frame)(body)
+  }
 }

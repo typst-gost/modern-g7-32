@@ -5,3 +5,12 @@
 #import "component/headings.typ": structure-heading
 #import "component/custom-title-template.typ"
 #import "utils.typ": enum-numbering
+#import "gost-frame/export.typ": (
+  change,
+  form-data,
+  frame-form,
+  frame-forms,
+  gost-frame,
+  person,
+  stamp-data,
+)
